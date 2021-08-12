@@ -1,0 +1,20 @@
+note left of browser:
+fill and submit form
+end note over
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note right of browser:
+This POST request contains the 
+new note as JSON-data 
+end note
+
+server-->browser: HTTP status code 201
+
+
+note right of browser:
+browser runs the js code fetched from server :
+-fetches the form-element
+-registers an event handler 
+-push the note to list
+-rerender notes
+end note
+
