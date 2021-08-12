@@ -1,0 +1,14 @@
+browser->server:HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: HTML-Code
+
+browser->server:HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: CSS
+
+browser->server:HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: spa.js
+note right of browser:
+runs the js code to request
+and render json data
+end note
+
+browser->server:HTTP GET htstps://studies.cs.helsinki.fi/exampleapp/data.json
