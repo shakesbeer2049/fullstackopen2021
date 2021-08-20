@@ -6,6 +6,25 @@ const Button = (props) =>{
   }
 
 // component for displaying counts of feedback
+const StatisticLine = (props) =>{
+  return(
+    <div>
+      <table >
+        <tbody>
+          <tr >
+            <td width='70'> {props.text}</td>
+            <td  >{props.value}</td>
+          </tr>
+        </tbody>
+          
+        
+        
+      </table>
+      
+    </div>
+  )
+}
+
 const Statistics = (props) =>{
   const{good,bad,neutral} = props
   const total = good+bad+neutral
@@ -21,12 +40,12 @@ const Statistics = (props) =>{
   return(
     <div>
       <h1>Statistics</h1>
-      <p>good {good} </p>
-      <p>neutral {neutral} </p>
-      <p>bad {bad}  </p>
-      <p>All {total}</p>
-      <p>Average { score / total } </p>
-      <p>Positive {(good / total) * 100 }% </p>
+      <StatisticLine text="good" value = {good} />
+      <StatisticLine text="neutral" value = {neutral} />
+      <StatisticLine text="bad" value = {bad} />
+      <StatisticLine text="All" value = {total} />
+      <StatisticLine text="Average" value = {score / total} />
+      <StatisticLine text="Positive" value = {(good / total) * 100 + '%'} />
     </div>
   )
 }
