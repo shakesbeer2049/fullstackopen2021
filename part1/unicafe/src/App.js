@@ -9,7 +9,15 @@ const Button = (props) =>{
 const Statistics = (props) =>{
   const{good,bad,neutral} = props
   const total = good+bad+neutral
-  const score = (good*1) + (bad * -1) + (neutral * 0)
+  const score = (good*1) + (bad * -1) + (neutral * 0) //score formula
+
+  if(good === 0 && bad ===0 && neutral === 0) {
+    return(
+      <div>
+        <p> No feedback given</p>
+      </div>
+    )
+  }
   return(
     <div>
       <h1>Statistics</h1>
