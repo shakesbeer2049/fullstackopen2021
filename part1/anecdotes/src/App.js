@@ -1,8 +1,6 @@
 import React , {useState} from 'react'
 
-const App = () =>{
-  
-  const randomGen = () => Math.floor(Math.random() * (anecdotes.length))
+const App = (props) =>{
   
   const anecdotes = [
     'If it hurts, do it more often',
@@ -13,12 +11,47 @@ const App = () =>{
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
   ]
+  const voteList = anecdotes.map(elem=> 0)
   
   const [selected ,setSelected] = useState(0)
+  const randomGen = () => Math.floor(Math.random() * (anecdotes.length))
+
+  const[votes , setVotes] = useState(voteList)
+
+  const[mostVotes, setMostVotes] = useState(0)
+
+  const[anectode , setAnectode] = useState(0)
+ 
+    // create array of votes 
+    // increment the voted anecdote in the array
+    // update state
+
+     const updateVote = () => {
+       // make a copy of the votes
+       const upvotes = [...votes]
+
+       upvotes[selected]++                                                                                                                                                                                                                                    
+  
+       if(upvotes[selected] > mostVotes){
+        setMostVotes(upvotes[selected])
+        setAnectode(anecdotes[selected])
+       }
+      setVotes(upvotes)
+     }
+     
+     
+      
+  
   return(
     <div>
-      <p>{anecdotes[selected]}</p>
+      <p>{anecdotes[selected]}</p> {/* prints anecdotes */}
+      <p>has {votes[selected]} votes</p>
+      
+      
       <button onClick = {()=> setSelected(randomGen)} >Next anecdote</button>
+      <button onClick = {()=> updateVote()}>Vote</button>
+   <h2>Most Votes</h2>
+    <p>{anectode} has most votes : {mostVotes}  </p>
     </div>
   )
 }
