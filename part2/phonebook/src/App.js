@@ -1,85 +1,60 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-//handle input and save it , handle new input , display 
+import { useState } from "react";
+import "./index.css";
+import Contacts from "./components/Contacts";
+import Filter from "./components/Filter";
+import AddContact from "./components/Add";
+import Notification from "./components/Notification";
 
-const Form = ({addContact,newName,newNumber,handleName,handleNumber}) => {
-  return(
-    <form onSubmit={addContact}>
-       <div> name: <input value={newName} onChange={handleName} /> </div>
-        <div> phone: <input value={newNumber} onChange={handleNumber} /> </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-  )
-}
+const App = () => {
+  const [showContacts, setShowContacts] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [message, setMessage] = useState(null);
+  const [errMessage, setErrMessage] = useState(null);
 
-const FilterDisplay = ({persons,filter}) =>{
-  return(
-      persons.filter(person=>person.name.toLowerCase().includes(filter.toLowerCase())).map(fP=>{return(<li>
-        {fP.name} {fP.number}
-      </li>)})
-  )
-  
-}
+  //TODO: CREATE A FORM FOR ADDING CONTACTS :DONE
+  //FUNCTION FOR DUPLICATES :DONE
+  //FILTER SEARCH BAR : done
+  //getdata : done
+  // post data: done
+  //delete data:
 
- const App = () => {
-
-  const [ persons, setPersons ] = useState([]) //total persons
-  
-  useEffect(()=>{
-    axios
-    .get('http://localhost:3001/persons')
-    .then(response=>{
-      setPersons(response.data)
-    })
-  },[])
-  const [ newName, setNewName ] = useState('') // add a person
-  const [newNumber,setNewNumber] = useState('') //add a number
-  const [filter, setFilter] = useState('')
- 
-  const addContact = (e) => {
-  e.preventDefault()
-  const personObject = {
-    name : newName,
-    number : newNumber,
-    date : new Date().toISOString(),
-    id: persons.length+1,
-
-  }
-  persons.find(name=>name.name === newName)?alert(`${newName} already exists`):setPersons(persons.concat(personObject))
- 
-  setNewName('')
-  setNewNumber('')
- }
-  const handleFilter = (e) =>{
-    setFilter(e.target.value)
-  }
-  
-  const handleName = (e) => {
-    setNewName(e.target.value)
-    }
-
-  const handleNumber = (e)=>{
-    setNewNumber(e.target.value)
-  }
-    
- 
   return (
-    <div>
-    <input type="text" onChange={handleFilter} />
-      <h2>Phonebook</h2>
+    <>
+      <div className="main-container">
+      <h1>Phonebook</h1><hr />
+      <Notification message={message} errMessage={errMessage} />
+      <div className="search">
+      <h2>Search</h2>
+      <Filter
+        showContacts={showContacts}
+        setFiltered={setFiltered}
+        filtered={filtered}
+      />
+      </div>
 
+      <div className="add-contact">
+      <h2>Add Contact</h2>
+      <AddContact
+        showContacts={showContacts}
+        setShowContacts={setShowContacts}
+        setMessage={setMessage}
+      />
+      </div>
 
-      <Form handleName={handleName} handleNumber={handleNumber} 
-            addContact={addContact} newName={newName}
-             newNumber={newNumber} />
+     <div className="show-contact">
+     <Contacts
+        showContacts={showContacts}
+        setShowContacts={setShowContacts}
+        filtered={filtered}
+        setFiltered={setFiltered}
+        setMessage={setMessage}
+        setErrMessage={setErrMessage}
+      />
+     </div>
+      </div>
+    </>
       
-      <h2>Numbers</h2>
-    
-     <FilterDisplay persons={persons} filter={filter} />
+  );
+};
 
-    </div>
-  )
-}
-export default App
+export default App;

@@ -1,0 +1,109 @@
+@import url('https://css.gg/trash.css');
+body{
+    background-color: black ; 
+    color: whitesmoke;
+    font-size: 18px;
+}
+h1{
+    color:  #239b56 ;
+}
+hr{
+    color: tomato;
+    width: 55%;
+    opacity: 50%;
+}
+
+.message{
+    color:green;
+    border: 3px solid green;
+    padding:5px;
+    border-radius: 5px;
+    background-color: rgba(0, 128, 0, 0.156);
+    width: fit-content;
+    margin: auto;
+}
+
+.err-message{
+    color:red;
+    border: 3px solid red;
+    padding:5px;
+    border-radius: 5px;
+    background-color: rgba(0, 128, 0, 0.156);
+    width: fit-content;
+    margin: auto;
+}
+
+
+.show-contact{
+    margin:auto;
+    
+}
+.main-container{
+    width: 70%;
+    margin: auto;
+    height:fit-content;
+    text-align: center;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:  #239b56 ;
+    
+}
+.search input {
+    border-radius: 7px;
+    margin-left: 15px;
+    border-color: #239b56;
+    font-size: 17px;
+}
+
+.add-contact h2{
+    color:  #239b56 ;
+}
+.add-contact label{
+    color: #b71919;
+    font-size: 25px;
+}
+.add-contact input{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    border-color:#ba4a00 ;
+    font-size: 18px;
+
+}
+.add-contact button{
+    margin-bottom: 10px;
+    border: none;
+    background-color: #006400d4;
+    padding: 11px;
+    border-radius: 15px;
+    width: 80px;
+    font-size: 18px;
+}
+
+.show-contact{
+    text-align: left;
+    width: 80%;
+    
+}
+.show-contact li {
+    list-style: none;
+    position: relative;
+    margin-bottom: 10px;
+    font-size: 24px;
+    
+}
+
+.show-contact button{
+    position: absolute;
+    margin-left:5px;
+    border: none;
+    color: red;
+    background: none;
+    left: 100%;
+    
+  
+}
